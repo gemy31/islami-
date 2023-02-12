@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/home/quran/sura_details.dart';
+import 'package:islami_app/quran/sura_details.dart';
 
 import '../../my_theme.dart';
 
@@ -20,11 +20,7 @@ class SuraItem extends StatelessWidget {
       },
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-          color: MyThemeData.blackColor,
-        ),
+        style: Theme.of(context).textTheme.titleLarge,
         textAlign: TextAlign.center,
       ),
     );
