@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/my_theme.dart';
-
+import 'package:provider/provider.dart';
+import '../providers/provider.dart';
 import 'hadeth_details_item.dart';
 import 'hadeth_tab.dart';
 
@@ -13,10 +14,17 @@ class HadethDetails extends StatelessWidget {
         .of(context)
         ?.settings
         .arguments as Hadeth;
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(
       children: [
-        Image.asset(
+        provider.appTheme==ThemeMode.light ? Image.asset(
           'assets/images/background_image.png',
+          fit: BoxFit.fill,
+          width: double.infinity,
+        )
+            :
+        Image.asset(
+          'assets/images/dark_bg.png',
           fit: BoxFit.fill,
           width: double.infinity,
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/providers/provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../my_theme.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
@@ -14,41 +14,37 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
     return Container(
-      margin: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(15),
-          topLeft: Radius.circular(15),
-        ),
-      ),
+      margin: const EdgeInsets.all(20),
       child: Column(
         children: [
           InkWell(
-            onTap: (){
-            provider.changeAppLanguage('en');
-            },
-            child: provider.appLanguage=='en' ?
-                getSelectedItemBottomSheet('English')
-                : getUnSelectedItemBottomSheet('English')
-          ),
-          SizedBox(
-            height: 15,
+              onTap: () {
+                provider.changeAppLanguage('en');
+              },
+              child: provider.appLanguage == 'en'
+                  ? getSelectedItemBottomSheet(
+                      AppLocalizations.of(context)!.english)
+                  : getUnSelectedItemBottomSheet(
+                      AppLocalizations.of(context)!.english)),
+          const SizedBox(
+            height: 20,
           ),
           InkWell(
-            onTap: (){
-             provider.changeAppLanguage('ar');
-            },
-            child:provider.appLanguage=='ar'? 
-                getSelectedItemBottomSheet('Arabic')
-                : getUnSelectedItemBottomSheet('Arabic')
-          ),
+              onTap: () {
+                provider.changeAppLanguage('ar');
+              },
+              child: provider.appLanguage == 'ar'
+                  ? getSelectedItemBottomSheet(
+                      AppLocalizations.of(context)!.arabic)
+                  : getUnSelectedItemBottomSheet(
+                      AppLocalizations.of(context)!.arabic)),
         ],
       ),
     );
   }
 
-   getSelectedItemBottomSheet(String text){
-  return Row(
+  getSelectedItemBottomSheet(String text) {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
@@ -58,11 +54,15 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
             fontSize: 25,
           ),
         ),
-        Icon(Icons.check,color: MyThemeData.goldColor,)
+        Icon(
+          Icons.check,
+          color: MyThemeData.goldColor,
+        )
       ],
     );
   }
-  getUnSelectedItemBottomSheet(String text){
+
+  getUnSelectedItemBottomSheet(String text) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

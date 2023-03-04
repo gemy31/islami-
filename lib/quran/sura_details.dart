@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/my_theme.dart';
 import 'package:islami_app/quran/sura_details_item.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/provider.dart';
 
 class SuraDetails extends StatefulWidget {
   static const String Route_Name = 'suraDetails';
@@ -16,23 +19,29 @@ class _SuraDetailsState extends State<SuraDetails> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
-
+    var provider = Provider.of<AppConfigProvider>(context);
     loadFile(args.index);
 
     return Stack(
       children: [
-        Image.asset(
-          'assets/images/background_image.png',
-          fit: BoxFit.fill,
-          width: double.infinity,
-        ),
+        provider.appTheme == ThemeMode.light
+            ? Image.asset(
+                'assets/images/background_image.png',
+                fit: BoxFit.fill,
+                width: double.infinity,
+              )
+            : Image.asset(
+                'assets/images/dark_bg.png',
+                fit: BoxFit.fill,
+                width: double.infinity,
+              ),
         Scaffold(
           appBar: AppBar(
             title: Text(
-              '${args.name}',
+              args.name,
             ),
           ),
-          body: verses.length == 0
+          body: verses.isEmpty
               ? Center(
                   child: CircularProgressIndicator(
                     color: MyThemeData.goldColor,
@@ -44,7 +53,9 @@ class _SuraDetailsState extends State<SuraDetails> {
                   },
                   separatorBuilder: (context, index) {
                     return Divider(
-                      color: MyThemeData.goldColor,
+                      color: provider.appTheme == ThemeMode.light
+                          ? MyThemeData.goldColor
+                          : MyThemeData.yellowColor,
                       thickness: 2,
                     );
                   },
@@ -66,5 +77,6 @@ class _SuraDetailsState extends State<SuraDetails> {
 class SuraDetailsArgs {
   String name;
   int index;
+
   SuraDetailsArgs({required this.name, required this.index});
 }

@@ -5,5 +5,13 @@
   "sebha" : "Sebha",
   "radio" : "Radio",
   "suraName" : "Sura Name",
-  "setting" : "Setting"
+  "hadethName" : "Hadeth Name",
+  "setting" : "Setting",
+  "language" : "Language",
+  "english" : "English",
+  "arabic" : "Arabic",
+  "theme" : "Theme",
+  "lightMood" : "Light Mood",
+  "darkMood" : "Dark Mood",
+  "numberTasbeh" : "Number of Tasbeh"
 }

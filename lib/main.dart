@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/providers/provider.dart';
 import 'package:islami_app/quran/sura_details.dart';
 import 'package:provider/provider.dart';
-import 'hadeth_tab/hadeth_details.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'hadeth/hadeth_details.dart';
 import 'home/home.dart';
 import 'my_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,9 +14,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  late AppConfigProvider provider;
+
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<AppConfigProvider>(context);
+    provider = Provider.of<AppConfigProvider>(context);
+    getSharedPref();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
@@ -31,5 +35,16 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
     );
+  }
+
+  void getSharedPref() async {
+    final prefs = await SharedPreferences.getInstance();
+    String language = prefs.getString('lang') ?? 'en';
+    provider.appLanguage = language;
+    if (prefs.getString('theme') == 'dark') {
+      provider.appTheme = ThemeMode.dark;
+    } else {
+      provider.appTheme = ThemeMode.light;
+    }
   }
 }

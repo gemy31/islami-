@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class MyThemeData{
-  static Color goldColor = Color(0xFFB7935F);
+class MyThemeData {
+  static Color goldColor = Color.fromRGBO(182, 95, 8, 1.0);
   static Color darkColor = Color(0xFF141A2E);
   static Color blackColor = Color(0xFF242424);
   static Color whiteColor = Colors.white;
+  static Color yellowColor = Color(0xFFFACC1D);
 
   static final ThemeData lightMode = ThemeData(
     primaryColor: goldColor,
@@ -23,21 +24,18 @@ class MyThemeData{
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: blackColor,
-      unselectedItemColor: whiteColor,
+      selectedItemColor: whiteColor,
+      unselectedItemColor: blackColor,
     ),
     textTheme: TextTheme(
-        titleLarge: TextStyle(
-      //  fontSize: 30,
+      titleLarge: TextStyle(
         fontWeight: FontWeight.bold,
-          color: blackColor,
+        color: blackColor,
       ),
     ),
-
-    
   );
-  static final ThemeData darkMode = ThemeData(
-    primaryColor: darkColor,
+  static ThemeData darkMode = ThemeData(
+    //primaryColor: Color(0xFFFACC1D),
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
@@ -49,12 +47,12 @@ class MyThemeData{
         fontWeight: FontWeight.bold,
       ),
       iconTheme: IconThemeData(
-        color: whiteColor,
+        color: yellowColor,
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: whiteColor,
-      unselectedItemColor: blackColor,
+      selectedItemColor: yellowColor,
+      unselectedItemColor: whiteColor,
     ),
     textTheme: TextTheme(
       titleLarge: TextStyle(
@@ -63,7 +61,5 @@ class MyThemeData{
         color: whiteColor,
       ),
     ),
-
-
   );
 }
