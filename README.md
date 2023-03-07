@@ -1,4 +1,4 @@
-# Islamic App
+# Muslim Mate App
 
 Daily Muslim Flutter App that contains Quran and Hadeth reading with a set of tools needed by any muslim.
 
